@@ -1,0 +1,3 @@
+include UNLICENSE README.md
+recursive-include tests *
+recursive-exclude tests *.pyc
