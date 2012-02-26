@@ -14,17 +14,22 @@ __status__ = 'Development'
 
 from re import sub
 
+from slumber import API
+
 from .errors import InvalidPhoneNumberError
 
 
 class Phone(object):
     """An object that holds a single phone's information.
 
+    :attr str OPENCNAM_API_URL: Current OpenCNAM API endpoint.
     :attr str number: The validated 10-digit US phone number.
     :attr str cnam: The caller ID name for this phone.
     """
+    OPENCNAM_API_URL = 'http://api.opencnam.com/v1'
 
     def __init__(self, number):
+        self.api = API(self.OPENCNAM_API_URL, append_slash=False)
         self.cnam = ''
         self.number = self._parse_number(str(number))
 
