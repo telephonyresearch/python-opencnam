@@ -51,3 +51,9 @@ class Phone(object):
             raise InvalidPhoneNumberError
 
         return number
+
+    def _get_cnam(self):
+        """Query the OpenCNAM API and retreive the caller ID name string
+        associated with this phone.
+        """
+        pass
