@@ -3,7 +3,7 @@ from unittest import TestCase
 from opencnam import InvalidPhoneNumberError, Phone
 
 
-class Phonetest(TestCase):
+class PhoneTest(TestCase):
 
     def test_init_requires_number(self):
         self.assertRaises(TypeError, Phone)
