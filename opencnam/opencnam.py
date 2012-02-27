@@ -15,7 +15,7 @@ class Phone(object):
     :attr str number: The validated 10-digit US phone number.
     :attr str cnam: The caller ID name for this phone.
     """
-    OPENCNAM_API_URL = 'http://api.opencnam.com/v1'
+    OPENCNAM_API_URL = 'https://api.opencnam.com/v1'
 
     def __init__(self, number):
         self.api = API(self.OPENCNAM_API_URL, append_slash=False)
