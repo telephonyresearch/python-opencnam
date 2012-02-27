@@ -79,8 +79,6 @@ class Phone(object):
         """
         if not self.cnam:
             try:
-                self.number = self.api.phone(self.number).get()['cnam']
+                self.cnam = self.api.phone(self.number).get()['cnam']
             except (HttpClientError, HttpServerError, KeyError):
                 pass
-        else:
-            return self.cnam
