@@ -18,11 +18,13 @@ class Phone(object):
     """
     OPENCNAM_API_URL = 'https://api.opencnam.com/v1'
 
-    def __init__(self, number):
+    def __init__(self, number, cnam=''):
         """Create a new Phone object, and attempt to lookup the caller ID name
         information using opencnam's public API.
 
         :param unicode number: The phone number to query in any format.
+        :param unicode cnam: If you'd like to manually set the caller ID name
+            for this phone number, you can do so here.
 
         Usage::
 
@@ -37,7 +39,7 @@ class Phone(object):
             opencnam's API.
         """
         self.api = API(self.OPENCNAM_API_URL, append_slash=False)
-        self.cnam = ''
+        self.cnam = unicode(cnam)
         self.number = unicode(number)
 
         # Clean up ``number``, and try to build a valid phone number that
