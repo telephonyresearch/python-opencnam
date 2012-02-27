@@ -1,16 +1,11 @@
 from setuptools import find_packages, setup
 
-from opencnam import __author__ as author
-from opencnam import __email__ as email
-from opencnam import __license__ as license
-from opencnam import __version__ as version
-
 
 setup(
 
     # Basic package information.
     name = 'opencnam',
-    version = version,
+    version = '0.1',
     packages = find_packages(),
 
     # Packaging options.
@@ -22,9 +17,9 @@ setup(
     tests_require = ['nose>=1.1.2'],
 
     # Metadata for PyPI.
-    author = author,
-    author_email = email,
-    license = license,
+    author = 'Randall Degges',
+    author_email = 'rdegges@gmail.com',
+    license = 'UNLICENSE',
     url = 'http://www.opencnam.com',
     keywords = 'voip http api rest caller id name cid cnam telephony ' \
             'telephone python library',
