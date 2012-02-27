@@ -3,6 +3,7 @@
 
 from re import sub
 
+from slumber.exceptions import HttpClientError, HttpServerError
 
 from .errors import InvalidPhoneNumberError
 from .helpers import API
@@ -49,5 +50,14 @@ class Phone(object):
     def _get_cnam(self):
         """Query the OpenCNAM API and retreive the caller ID name string
         associated with this phone.
+
+        Once we've got a valid caller ID name for this phone number, we'll
+        cache that name for future reference.
         """
-        pass
+        if not self.cnam:
+            try:
+                self.number = self.api.phone(self.number).get()['cnam']
+            except (HttpClientError, HttpServerError, KeyError):
+                pass
+        else:
+            return self.cnam
