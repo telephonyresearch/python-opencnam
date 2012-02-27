@@ -48,7 +48,7 @@ class Phone(object):
         if len(self.number) < 10 or not (2002000000 <= long(self.number) <= 9999999999):
             raise InvalidPhoneNumberError
 
-    def _get_cnam(self):
+    def get_cnam(self):
         """Query the OpenCNAM API and retreive the caller ID name string
         associated with this phone.
 
