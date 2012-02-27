@@ -19,6 +19,23 @@ class Phone(object):
     OPENCNAM_API_URL = 'https://api.opencnam.com/v1'
 
     def __init__(self, number):
+        """Create a new Phone object, and attempt to lookup the caller ID name
+        information using opencnam's public API.
+
+        :param unicode number: The phone number to query in any format.
+
+        Usage::
+
+            from opencnam import Phone
+
+            phone = Phone('+18182179229')
+            ...
+
+        ..note::
+            When a new Phone object is created, we'll attempt to clean up the
+            phone number input to convert it into a usable format for use with
+            opencnam's API.
+        """
         self.api = API(self.OPENCNAM_API_URL, append_slash=False)
         self.cnam = ''
         self.number = str(number)
