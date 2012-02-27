@@ -21,14 +21,17 @@ class Phone(object):
     def __init__(self, number):
         self.api = API(self.OPENCNAM_API_URL, append_slash=False)
         self.cnam = ''
-        self.number = self._parse_number(str(number))
+        self.number = str(number)
 
-    def _parse_number(self, number):
-        """Make ``number`` a valid phone number and return it.
+        # Clean up ``number``, and try to build a valid phone number that
+        # opencnam can use.
+        self.clean()
 
-        :param str number: Phone number in any format.
-        :rtype: string
-        :returns: A valid 10-digit US phone number as a string.
+    def clean(self):
+        """Clean up ``number``, trying to make it a valid phone number that
+        opencnam can use. opencnam only supports 10-digit US phone numbers with
+        no symbols.
+
         :raises: InvalidPhoneNumberError if ``number`` cannot be made into a
             valid US phone number.
 
@@ -39,13 +42,11 @@ class Phone(object):
             phone = Phone('+1-818-217-9229')
             assert phone.number == '8182179229'
         """
-        number = sub(r'\D', '', number)
-        number = number[-10:]
+        self.number = sub(r'\D', '', self.number)
+        self.number = self.number[-10:]
 
-        if len(number) < 10 or not (2002000000 <= long(number) <= 9999999999):
+        if len(self.number) < 10 or not (2002000000 <= long(self.number) <= 9999999999):
             raise InvalidPhoneNumberError
-
-        return number
 
     def _get_cnam(self):
         """Query the OpenCNAM API and retreive the caller ID name string
