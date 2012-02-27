@@ -3,9 +3,9 @@
 
 from re import sub
 
-from slumber import API
 
 from .errors import InvalidPhoneNumberError
+from .helpers import API
 
 
 class Phone(object):
