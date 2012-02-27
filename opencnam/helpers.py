@@ -2,7 +2,7 @@
 
 
 from requests import session
-from slumber.api import API as SlumberAPI
+from slumber import API as SlumberAPI
 
 
 class API(SlumberAPI):
