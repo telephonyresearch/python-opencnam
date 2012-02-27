@@ -38,11 +38,16 @@ class Phone(object):
         """
         self.api = API(self.OPENCNAM_API_URL, append_slash=False)
         self.cnam = ''
-        self.number = str(number)
+        self.number = unicode(number)
 
         # Clean up ``number``, and try to build a valid phone number that
         # opencnam can use.
         self.clean()
+
+        # Attempt to grab the caller ID name information from opencnam. If we
+        # can't get a caller ID response back, we won't retry (developers can
+        # manually retry to grab the caller ID at any time using ``get_cnam``).
+        self.get_cnam()
 
     def clean(self):
         """Clean up ``number``, trying to make it a valid phone number that
