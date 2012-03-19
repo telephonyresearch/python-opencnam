@@ -62,12 +62,27 @@ So you can go crazy with input, and not worry about getting an
 be made valid.
 
 
+## API Authentication
+
+If you've got an account on [opencnam](http://www.opencnam.com "opencnam"), you
+can use your API credentials with python-opencnam. This will allow you to make
+an unlimited amount of API queries (since paid users have no limits).
+
+To specify your API credentials, just pass them into the ``Phone`` constructor,
+like so:
+
+    from opencnam import Phone
+
+    phone = Phone('+18182179229', api_user='username', api_key='blah')
+
+Assuming you've specifid both the ``api_user`` and ``api_key`` params,
+python-opencnam will use your credentials and you'll be running in no time!
+
+
 ## Limits
 
 The [opencnam](http://www.opencnam.com "opencnam") API we use as a backend
-limits you to no more than 60 requests per minute (using their free tier). When
-they release a paid API, you'll have the option of specifying API creds to make
-unlimited requests.
+limits you to no more than 60 requests per minute (using their free tier).
 
 
 ## Changelog
