@@ -87,6 +87,11 @@ limits you to no more than 60 requests per minute (using their free tier).
 
 ## Changelog
 
+
+v0.2: 3-19-2012
+
+    - Adding support for API authentication.
+
 v0.1: 2-26-2012
 
 - Initial release!
