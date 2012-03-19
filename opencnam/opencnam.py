@@ -15,16 +15,20 @@ class Phone(object):
     :attr str OPENCNAM_API_URL: Current OpenCNAM API endpoint.
     :attr str number: The validated 10-digit US phone number.
     :attr str cnam: The caller ID name for this phone.
+    :attr str api_user: Your API username.
+    :attr str api_key: Your API key.
     """
     OPENCNAM_API_URL = 'https://api.opencnam.com/v1'
 
-    def __init__(self, number, cnam=''):
+    def __init__(self, number, cnam='', api_user=None, api_key=None):
         """Create a new Phone object, and attempt to lookup the caller ID name
         information using opencnam's public API.
 
         :param unicode number: The phone number to query in any format.
         :param unicode cnam: If you'd like to manually set the caller ID name
             for this phone number, you can do so here.
+        :param str api_user: Your API username.
+        :param str api_key: Your API key.
 
         Usage::
 
@@ -41,6 +45,8 @@ class Phone(object):
         self.api = API(self.OPENCNAM_API_URL, append_slash=False)
         self.cnam = unicode(cnam)
         self.number = unicode(number)
+        self.api_user = api_user
+        self.api_key = api_key
 
         # Clean up ``number``, and try to build a valid phone number that
         # opencnam can use.
@@ -81,6 +87,11 @@ class Phone(object):
         """
         if not self.cnam:
             try:
-                self.cnam = self.api.phone(self.number).get()['cnam']
+                # If the user supplied API creds, use them.
+                if self.api_user and self.api_key:
+                    self.cnam = self.api.phone(self.number).get(username=self.api_user,
+                            api_key=self.api_key)['cnam']
+                else:
+                    self.cnam = self.api.phone(self.number).get()['cnam']
             except (HttpClientError, HttpServerError, KeyError):
                 pass
