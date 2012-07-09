@@ -6,7 +6,7 @@ A simple python library for getting caller ID name information.
 
 This library uses [opencnam](http://www.opencnam.com "opencnam") as a backend.
 
-[![Build Status](https://secure.travis-ci.org/rdegges/python-opencnam.png?branch=master)](http://travis-ci.org/telephonyresearch/python-opencnam)
+[![Build Status](https://secure.travis-ci.org/telephonyresearch/python-opencnam.png?branch=master)](http://travis-ci.org/telephonyresearch/python-opencnam)
 
 
 ## Installation
