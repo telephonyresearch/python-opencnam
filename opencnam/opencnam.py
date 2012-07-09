@@ -3,10 +3,10 @@
 
 from re import sub
 
-from slumber.exceptions import HttpClientError, HttpServerError
+from requests import get
+from requests.exceptions import ConnectionError
 
 from .errors import InvalidPhoneNumberError
-from .helpers import API
 
 
 class Phone(object):
@@ -18,7 +18,7 @@ class Phone(object):
     :attr str api_user: Your API username.
     :attr str api_key: Your API key.
     """
-    OPENCNAM_API_URL = 'https://api.opencnam.com/v1'
+    OPENCNAM_API_URL = 'https://api.opencnam.com/v1/phone/%s'
 
     def __init__(self, number, cnam='', api_user=None, api_key=None):
         """Create a new Phone object, and attempt to lookup the caller ID name
@@ -42,7 +42,6 @@ class Phone(object):
             phone number input to convert it into a usable format for use with
             opencnam's API.
         """
-        self.api = API(self.OPENCNAM_API_URL, append_slash=False)
         self.cnam = unicode(cnam)
         self.number = unicode(number)
         self.api_user = api_user
@@ -86,12 +85,16 @@ class Phone(object):
         cache that name for future reference.
         """
         if not self.cnam:
+            params = {'format': 'text'}
+
+            # If the user supplied API creds, use them.
+            if self.api_user and self.api_key:
+                params['username'] = self.api_user
+                params['api_key'] = self.api_key
+
             try:
-                # If the user supplied API creds, use them.
-                if self.api_user and self.api_key:
-                    self.cnam = self.api.phone(self.number).get(username=self.api_user,
-                            api_key=self.api_key)['cnam']
-                else:
-                    self.cnam = self.api.phone(self.number).get()['cnam']
-            except (HttpClientError, HttpServerError, KeyError):
+                response = get(self.OPENCNAM_API_URL % self.number, params=params)
+                if response.status_code == 200:
+                    self.cnam = response.text
+            except ConnectionError:
                 pass
