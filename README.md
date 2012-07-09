@@ -1,4 +1,8 @@
+# python-opencnam
+
 A simple python library for getting caller ID name information.
+
+![OpenCNAM](https://github.com/telephonyresearch/python-opencnam/raw/master/assets/logo.png)
 
 This library uses [opencnam](http://www.opencnam.com "opencnam") as a backend.
 
@@ -87,6 +91,12 @@ limits you to no more than 60 requests per hour (using their free tier).
 
 ## Changelog
 
+
+v0.3: 7-9-2012
+
+    - Rewriting the backend to use ``requests`` instead of ``slumber``.
+    - Cleaning up documentation.
+    - Adding public tests via Travis CI.
 
 v0.2: 3-19-2012
 
