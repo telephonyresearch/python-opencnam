@@ -5,7 +5,7 @@ setup(
 
     # Basic package information.
     name = 'opencnam',
-    version = '0.2',
+    version = '0.3',
     packages = find_packages(),
 
     # Packaging options.
@@ -14,7 +14,6 @@ setup(
 
     # Package dependencies.
     install_requires = ['requests>=0.13.2'],
-    tests_require = ['nose>=1.1.2'],
 
     # Metadata for PyPI.
     author = 'Randall Degges',
