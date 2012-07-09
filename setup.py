@@ -13,7 +13,7 @@ setup(
     include_package_data = True,
 
     # Package dependencies.
-    install_requires = ['slumber>=0.4'],
+    install_requires = ['requests>=0.13.2'],
     tests_require = ['nose>=1.1.2'],
 
     # Metadata for PyPI.
