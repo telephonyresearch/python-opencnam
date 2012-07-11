@@ -94,6 +94,11 @@ limits you to no more than 60 requests per hour (using their free tier).
 ## Changelog
 
 
+v0.4: 7-10-2012
+
+    - Adding 3 second timeout to CNAM lookups, this way we won't block for too
+      long.
+
 v0.3: 7-9-2012
 
     - Rewriting the backend to use ``requests`` instead of ``slumber``.
