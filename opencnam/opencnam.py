@@ -4,7 +4,7 @@
 from re import sub
 
 from requests import get
-from requests.exceptions import ConnectionError
+from requests.exceptions import ConnectionError, Timeout
 
 from .errors import InvalidPhoneNumberError
 
@@ -93,8 +93,8 @@ class Phone(object):
                 params['api_key'] = self.api_key
 
             try:
-                response = get(self.OPENCNAM_API_URL % self.number, params=params)
+                response = get(self.OPENCNAM_API_URL % self.number, params=params, timeout=3)
                 if response.status_code == 200:
                     self.cnam = response.text
-            except ConnectionError:
+            except (ConnectionError, Timeout):
                 pass
