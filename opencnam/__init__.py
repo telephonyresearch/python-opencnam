@@ -10,7 +10,7 @@ __copyright__ = 'Telephony Research Services, LLC'
 __credits__ = ('Randall Degges', )
 
 __license__ = 'UNLICENSE'
-__version = '0.2'
+__version = '0.5'
 __maintainer__ = 'Randall Degges'
 __email__ = 'rdegges@gmail.com'
-__status__ = 'Development'
+__status__ = 'Production'
