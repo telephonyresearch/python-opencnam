@@ -37,7 +37,7 @@ Using `python-opencnam` is easy::
     from opencnam import Phone
 
     phone = Phone('2024561111')
-    print phone.number, phone.cnam 
+    print phone.number, phone.cnam
 
 
 The main object, ``Phone``, defined in the ``opencnam`` module accepts a phone
@@ -79,10 +79,13 @@ like so:
 
     from opencnam import Phone
 
-    phone = Phone('+18182179229', api_user='username', api_key='blah')
+    phone = Phone('+18182179229', account_sid='ACxxx', auth_token='AUxxx')
 
 Assuming you've specifid both the ``api_user`` and ``api_key`` params,
 python-opencnam will use your credentials and you'll be running in no time!
+
+**NOTE**: The ``api_user`` and ``api_key`` parameters are deprecated as of the
+0.5 release. In the 0.6 release they will be removed.
 
 
 ## Limits
@@ -93,6 +96,12 @@ limits you to no more than 60 requests per hour (using their free tier).
 
 ## Changelog
 
+v0.5: 11-8-2012
+
+    - Adding support for OpenCNAM V2 API.
+    - Deprecating the ``api_user`` and ``api_key`` authentication parameters,
+      these have been replaced by their new counterparts: ``account_sid`` and
+      ``auth_token``.
 
 v0.4: 7-10-2012
 

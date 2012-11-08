@@ -5,7 +5,7 @@ setup(
 
     # Basic package information.
     name = 'opencnam',
-    version = '0.4',
+    version = '0.5',
     packages = find_packages(),
 
     # Packaging options.
@@ -26,7 +26,7 @@ setup(
             'information using the opencnam API.',
     long_description = open('README.md').read(),
     classifiers = [
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
         'Intended Audience :: Developers',
         'Intended Audience :: Telecommunications Industry',
