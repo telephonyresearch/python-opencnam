@@ -18,17 +18,20 @@ class Phone(object):
     :attr str api_user: Your API username.
     :attr str api_key: Your API key.
     """
-    OPENCNAM_API_URL = 'https://api.opencnam.com/v1/phone/%s'
+    OPENCNAM_API_URL = 'https://api.opencnam.com/v2/phone/%s'
 
-    def __init__(self, number, cnam='', api_user=None, api_key=None):
+    def __init__(self, number, cnam='', api_user=None, api_key=None,
+            account_sid=None, auth_token=None):
         """Create a new Phone object, and attempt to lookup the caller ID name
         information using opencnam's public API.
 
         :param unicode number: The phone number to query in any format.
         :param unicode cnam: If you'd like to manually set the caller ID name
             for this phone number, you can do so here.
-        :param str api_user: Your API username.
-        :param str api_key: Your API key.
+        :param str api_user: DEPRECATED. Your API username.
+        :param str api_key: DEPRECATED. Your API key.
+        :param str account_sid: Your Account SID (found in the OpenCNAM dashboard).
+        :param str auth_token: Your Auth Token (found in the OpenCNAM dashboard).
 
         Usage::
 
@@ -46,6 +49,8 @@ class Phone(object):
         self.number = unicode(number)
         self.api_user = api_user
         self.api_key = api_key
+        self.account_sid = account_sid or self.api_user
+        self.auth_token = auth_token or self.api_key
 
         # Clean up ``number``, and try to build a valid phone number that
         # opencnam can use.
@@ -85,12 +90,12 @@ class Phone(object):
         cache that name for future reference.
         """
         if not self.cnam:
-            params = {'format': 'text'}
+            params = {'format': 'pbx'}
 
             # If the user supplied API creds, use them.
-            if self.api_user and self.api_key:
-                params['username'] = self.api_user
-                params['api_key'] = self.api_key
+            if self.account_sid and self.auth_token:
+                params['account_sid'] = self.account_sid
+                params['auth_token'] = self.auth_token
 
             try:
                 response = get(self.OPENCNAM_API_URL % self.number, params=params, timeout=3)
