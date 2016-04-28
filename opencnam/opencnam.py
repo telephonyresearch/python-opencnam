@@ -18,7 +18,7 @@ class Phone(object):
     :attr str api_user: Your API username.
     :attr str api_key: Your API key.
     """
-    OPENCNAM_API_URL = 'https://api.opencnam.com/v2/phone/%s'
+    OPENCNAM_API_URL = 'https://api.opencnam.com/v3/phone/%s'
 
     def __init__(self, number, cnam='', api_user=None, api_key=None,
             account_sid=None, auth_token=None):
