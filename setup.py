@@ -5,7 +5,7 @@ setup(
 
     # Basic package information.
     name = 'opencnam',
-    version = '0.5',
+    version = '0.6',
     packages = find_packages(),
 
     # Packaging options.
@@ -13,11 +13,11 @@ setup(
     include_package_data = True,
 
     # Package dependencies.
-    install_requires = ['requests>=0.13.2'],
+    install_requires = ['requests>=2.20.1'],
 
     # Metadata for PyPI.
-    author = 'Randall Degges',
-    author_email = 'rdegges@gmail.com',
+    author = 'Jason Rudder',
+    author_email = 'jason.rudder@telo.com',
     license = 'UNLICENSE',
     url = 'http://www.opencnam.com',
     keywords = 'voip http api rest caller id name cid cnam telephony ' \
@@ -34,6 +34,7 @@ setup(
         'Natural Language :: English',
         'Operating System :: POSIX :: Linux',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: Implementation :: CPython',
         'Topic :: Communications',
         'Topic :: Communications :: Internet Phone',
