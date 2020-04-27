@@ -5,7 +5,7 @@ setup(
 
     # Basic package information.
     name = 'opencnam',
-    version = '0.6',
+    version = '0.7',
     packages = find_packages(),
 
     # Packaging options.
