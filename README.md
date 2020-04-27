@@ -55,6 +55,10 @@ like so:
 
 ## Changelog
 
+v07: 2020-04-27
+
+    - Update urllib3 from =1.24.1 to >=1.24.2.
+
 v06: 2018-11-30
 
     - Use OpenCNAM v3.
